@@ -2847,11 +2847,15 @@ void retro_deinit(void)
       plugins_opened = 0;
    }
    SysClose();
+
+   if (vout_buf)
+   {
 #ifdef _3DS
-   linearFree(vout_buf);
+      linearFree(vout_buf);
 #else
-   free(vout_buf);
+      free(vout_buf);
 #endif
+   }
    vout_buf = NULL;
 
 #ifdef VITA
